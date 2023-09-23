@@ -19,7 +19,7 @@ public class EmployeeControllers {
 		this.employeeService = employeeServiceImp;
 	}
 	
-	@GetMapping("/hello")
+	@GetMapping("/employees")
 	public String getEmployees() {
 		return employeeService.getEmployees();
 	}
