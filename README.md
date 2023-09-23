@@ -4,8 +4,8 @@ The purpose of this project is to practice and demonstrate the features/annotati
 
 ### Department:
 
-- GET **localhost:8089/api/departments** : Fetches all the departments
-- POST **localhost:8089/api/department** : Add new department
+- (GET) **localhost:8089/api/departments** : Fetches all the departments
+- (POST) **localhost:8089/api/department** : Add new department
 	- Body:
 		```json
 		{
@@ -15,8 +15,8 @@ The purpose of this project is to practice and demonstrate the features/annotati
 
 ### Employee:
 
-- GET **localhost:8089/api/employees** : Fetches all the employees
-- POST **localhost:8089/api/employee** : Add new employee
+- (GET) **localhost:8089/api/employees** : Fetches all the employees
+- (POST) **localhost:8089/api/employee** : Add new employee
 	- Body:
 		```json
 		{
