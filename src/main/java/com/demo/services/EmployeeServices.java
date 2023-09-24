@@ -1,5 +1,7 @@
 package com.demo.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -24,8 +26,17 @@ public class EmployeeServices implements EmployeeServiceImp {
 	}
 
 	@Override
-	public String getEmployees() {
-		return "hello";
+	public ResponseEntity<?> getEmployees() {
+		List<EmployeeEntity> employees = new ArrayList<EmployeeEntity>();
+		
+		
+		try {
+			employeeRepo.findAll().forEach(employees::add);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ResponseEntity.ok(employees);
 	}
 
 	@Override

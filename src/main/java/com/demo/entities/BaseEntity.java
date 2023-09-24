@@ -19,9 +19,6 @@ public abstract class BaseEntity {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Dhaka")
 	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Dhaka")
-	private Timestamp modifiedAt;
-
 	public long getId() {
 		return id;
 	}
@@ -36,14 +33,6 @@ public abstract class BaseEntity {
 
 	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt = createdAt;
-	}
-
-	public Timestamp getModifiedAt() {
-		return modifiedAt;
-	}
-
-	public void setModifiedAt(Timestamp modifiedAt) {
-		this.modifiedAt = modifiedAt;
 	}
 
 }

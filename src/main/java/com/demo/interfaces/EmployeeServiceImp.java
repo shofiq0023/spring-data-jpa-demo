@@ -6,7 +6,7 @@ import com.demo.dto.EmployeeRequestDto;
 
 public interface EmployeeServiceImp {
 
-	public String getEmployees();
+	public ResponseEntity<?> getEmployees();
 
 	public ResponseEntity<?> addEmployee(EmployeeRequestDto reqDto);
 

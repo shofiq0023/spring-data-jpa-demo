@@ -1,6 +1,9 @@
 package com.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -9,9 +12,21 @@ public class EmployeeEntity extends BaseEntity {
 	private String employeeName;
 	private String employeeDesignation;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "department_id", nullable = false)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // To prevent serialisation issue
 	private DepartmentEntity department;
+
+	public EmployeeEntity() {
+		super();
+	}
+
+	public EmployeeEntity(String employeeName, String employeeDesignation, DepartmentEntity department) {
+		super();
+		this.employeeName = employeeName;
+		this.employeeDesignation = employeeDesignation;
+		this.department = department;
+	}
 
 	public String getEmployeeName() {
 		return employeeName;

@@ -20,7 +20,7 @@ public class EmployeeControllers {
 	}
 	
 	@GetMapping("/employees")
-	public String getEmployees() {
+	public ResponseEntity<?> getEmployees() {
 		return employeeService.getEmployees();
 	}
 	
