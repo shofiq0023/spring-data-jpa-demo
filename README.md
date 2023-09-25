@@ -1,27 +1,19 @@
-# Spring Data JPA demo
-The purpose of this project is to practice and demonstrate the features/annotations provided by the Spring Data JPA.
+# Data relation with JPA mapping
+This is a demonstration project for data mapping with Spring data JPA.
 
+## One-to-One mapping:
+For one-to-one mapping I used a **user** entity and connected it with the **userPersonalInfo** entity.
 
-### Department:
-
-- (GET) **localhost:8089/api/departments** : Fetches all the departments
-- (POST) **localhost:8089/api/department** : Add new department
-	- Body:
-		```json
+### API:
+- (GET) localhost:8089/users: Get all users
+- (POST) localhost:8089/user: Create a new user
+	- **body**:
+	```json
 		{
-		    "name": "IT"
+		    "username": "shofiqul",
+			"fullName": "Shofiqul Islam",
+			"mobile": "01545454585",
+			"address": "Dhaka"
 		}
-		```
-
-### Employee:
-
-- (GET) **localhost:8089/api/employees** : Fetches all the employees
-- (POST) **localhost:8089/api/employee** : Add new employee
-	- Body:
-		```json
-		{
-		    "employeeName": "John doe",
-		    "employeeDesignation": "Software Developer",
-		    "departmentId": 1
-		}
-		```
+	```
+- (DELETE) localhost:8089/user/{id}: Deletes a user by the given user id
