@@ -10,10 +10,10 @@ For one-to-one mapping I used a **user** entity and connected it with the **user
 	- **body**:
 	```json
 	{
-    "username": "shofiqul",
-	"fullName": "Shofiqul Islam",
-	"mobile": "01618638686",
-	"address": "Dhaka"
-}
+	    "username": "shofiqul",
+		"fullName": "Shofiqul Islam",
+		"mobile": "01618638686",
+		"address": "Dhaka"
+	}
 	```
 - (DELETE) localhost:8089/user/{id}: Deletes a user by the given user id
