@@ -1,6 +1,6 @@
 package com.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +28,6 @@ public class Employee {
 	
 	@ManyToOne
 	@JoinColumn(name = "department_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Department department;
 }

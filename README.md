@@ -5,28 +5,54 @@ This is a demonstration project for data mapping with Spring data JPA.
 - There is no authentication in this project as this is a demo project.
 - This project demonstrate the JPA Mapping like One-to-One, Many-to-One, Many-to-Many mapping.
 
-# One-to-One mapping:
-For one-to-one mapping I used a **user** entity and connected it with the **userPersonalInfo** entity.
+# One-to-One Mapping:
+This mapping is where one entity with directly related with exactly one another entity. This is demonstrated by the **User** and **UserPersonalInfo** entity in the project.  
+In the **User** entity the **@OneToOne** annotation is used for the mapping. Cascade type is set to **ALL** for reflecting any changes made to the **User** entity.
+```java
+// Entity class
+public class User {
+	// Other properties
 
-### API:
-- **localhost:8089/users** [GET]: Get all users.
-- **localhost:8089/user** [POST]: Create a new user.
-	- body:
-	```json
-	{
-		"username": "shofiqul",
-		"fullName": "Shofiqul Islam",
-		"mobile": "01618638686",
-		"address": "Dhaka"
-	}
-	```
-- **localhost:8089/user/{id}** [POST]: Deletes a user by the given user id
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "personal_info_id", referencedColumn = "id")
+	private UserPersonalInfo personalInfo;
 
-# One-to-Many:
-For the One-to-Many demo I used two example. First one is the relation between a department and employee. And Second one is the relation between a Author and a book.
+	// Getters and setters
+}
+```
+**@JoinColumn** annotation is used on the owning side of the relation. In My case **User** is the owning side. **@JoinColumn** is not necessary but for controll I included the annotation. This annotation defines the relation by using the other entity's "id".  
+  
+On the other hand, for the **UserPersonalInfo** entity, I added the **@OneToOne** and **@JsonBackReference** annotation.
+```java
+// Entity class
+public class UserPersonalInfo {
+	// Other properties
 
-For the first example a **Department** and a **Employee** entity is used.
+	@OneToOne(mappedBy = "personalInfo")
+	@JsonBackReference
+	private User user;
 
-### API (For employee):
-- **localhost:8089/employees** [GET]: Get all employees.
-- **localhost:8089/employee/{depId}** [GET]: Get employee by department id.
+	// Getters and setters
+}
+```
+Here the **@JsonBackReference** was used to avoid **Jackson data bind loop error**. This annotation is required if you want to return the entity class in response. I would suggest using a DTO for API response. I returned the entity class for the sake of this demonstration.
+
+# One-to-Many Mapping:
+This mapping is where one entity is related to multiple other entities. This is the most commonly used relationship. This is demonstrated by the **Book** and **Author** entity in this project.  
+In this case the Book is the owning side of this relationship.  
+```java
+// Entity class
+public class Book {
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	@JsonBackReference
+	private Author author;
+}
+
+// Entity class
+public class Author {
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Book> books;
+}
+```
+Here the relationship is Unidirectional as we have specified the owning and reverse side of the relationship.

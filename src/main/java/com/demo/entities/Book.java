@@ -1,5 +1,6 @@
 package com.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -28,6 +29,6 @@ public class Book {
 	
 	@ManyToOne
 	@JoinColumn(name = "author_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Author author;
 }

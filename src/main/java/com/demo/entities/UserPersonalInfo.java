@@ -1,5 +1,8 @@
 package com.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,4 +29,8 @@ public class UserPersonalInfo {
 	private String fullName;
 	private String mobile;
 	private String address;
+	
+	@OneToOne(mappedBy = "personalInfo")
+	@JsonBackReference
+	private User user;
 }
